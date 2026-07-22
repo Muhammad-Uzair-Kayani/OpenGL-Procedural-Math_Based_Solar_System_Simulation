@@ -29,6 +29,7 @@ void Application::Run()
 		n_Time = glfwGetTime();
 		m_Time = n_Time - p_Time;
 
+		OnSolarSystemUpdate(m_Time);
 		OnUpdate();
 
 		p_Time = n_Time;
@@ -90,23 +91,16 @@ void Application::OnEvent(Event& e)
 void Application::TestObject()
 {
 	m_Renderer->PushObject(CreateSun());
-
 	m_Renderer->PushObject(CreateMercury());
 	m_Renderer->PushObject(CreateVenus());
 	m_Renderer->PushObject(CreateEarth());
 	m_Renderer->PushObject(CreateMoon());
 	m_Renderer->PushObject(CreateMars());
-
 	m_Renderer->PushObject(CreateJupiter());
-
 	m_Renderer->PushObject(CreateSaturn());
 	m_Renderer->PushObject(CreateSaturnRing());
-
 	m_Renderer->PushObject(CreateUranus());
 	m_Renderer->PushObject(CreateUranusRing());
-
 	m_Renderer->PushObject(CreateNeptune());
 	m_Renderer->PushObject(CreatePluto());
-
-	m_Renderer->PushObject(CreateAsteroid());
 }

@@ -4,6 +4,34 @@
 #include <vector>
 #include <cmath>
 
+constexpr float SOLAR_RENDER_RADIUS = 1.5f;        // Engine units
+
+// =========================
+// Radius (km)
+// =========================
+
+constexpr float SUN_RADIUS = 695700.0f;
+constexpr float MERCURY_RADIUS = 2439.7f;
+constexpr float VENUS_RADIUS = 6051.8f;
+constexpr float EARTH_RADIUS = 6371.0f;
+constexpr float MOON_RADIUS = 1737.4f;
+constexpr float MARS_RADIUS = 3389.5f;
+constexpr float JUPITER_RADIUS = 69911.0f;
+constexpr float SATURN_RADIUS = 58232.0f;
+constexpr float URANUS_RADIUS = 25362.0f;
+constexpr float NEPTUNE_RADIUS = 24622.0f;
+constexpr float PLUTO_RADIUS = 1188.3f;
+
+
+constexpr float RADIUS_SCALE =
+SUN_RADIUS / SOLAR_RENDER_RADIUS;
+
+// Helper
+constexpr float ScaleRadius(float radiusKm)
+{
+	return radiusKm / RADIUS_SCALE;
+}
+
 struct Sphere : public Shape
 {
 protected:
@@ -281,7 +309,7 @@ public:
 struct Sun : public Sphere
 {
 	Sun()
-		: Sphere(1.5f)
+		: Sphere(ScaleRadius(695700.0f))
 	{
 	}
 };
@@ -289,7 +317,7 @@ struct Sun : public Sphere
 struct Mercury : public Sphere
 {
 	Mercury()
-		: Sphere(0.38f)
+		: Sphere(ScaleRadius(2439.7f))
 	{
 	}
 };
@@ -297,7 +325,7 @@ struct Mercury : public Sphere
 struct Venus : public Sphere
 {
 	Venus()
-		: Sphere(0.95f)
+		: Sphere(ScaleRadius(6051.8f))
 	{
 	}
 };
@@ -305,7 +333,7 @@ struct Venus : public Sphere
 struct Earth : public Sphere
 {
 	Earth()
-		: Sphere(1.0f)
+		: Sphere(ScaleRadius(6371.0f))
 	{
 	}
 };
@@ -313,7 +341,7 @@ struct Earth : public Sphere
 struct Moon : public Sphere
 {
 	Moon()
-		: Sphere(0.27f)
+		: Sphere(ScaleRadius(1737.4f))
 	{
 	}
 };
@@ -321,7 +349,7 @@ struct Moon : public Sphere
 struct Mars : public Sphere
 {
 	Mars()
-		: Sphere(0.53f)
+		: Sphere(ScaleRadius(3389.5f))
 	{
 	}
 };
@@ -329,7 +357,7 @@ struct Mars : public Sphere
 struct Jupiter : public Sphere
 {
 	Jupiter()
-		: Sphere(2.5f)
+		: Sphere(ScaleRadius(69911.0f))
 	{
 	}
 };
@@ -337,7 +365,7 @@ struct Jupiter : public Sphere
 struct Saturn : public Sphere
 {
 	Saturn()
-		: Sphere(2.1f)
+		: Sphere(ScaleRadius(58232.0f))
 	{
 	}
 };
@@ -345,7 +373,10 @@ struct Saturn : public Sphere
 struct SaturnRing : public Ring
 {
 	SaturnRing()
-		: Ring(2.5f, 4.0f)
+		: Ring(
+			ScaleRadius(117000.0f),
+			ScaleRadius(180000.0f)
+		)
 	{
 	}
 };
@@ -353,7 +384,7 @@ struct SaturnRing : public Ring
 struct Uranus : public Sphere
 {
 	Uranus()
-		: Sphere(1.6f)
+		: Sphere(ScaleRadius(25362.0f))
 	{
 	}
 };
@@ -361,7 +392,10 @@ struct Uranus : public Sphere
 struct UranusRing : public Ring
 {
 	UranusRing()
-		: Ring(1.8f, 2.8f)
+		: Ring(
+			ScaleRadius(51000.0f),
+			ScaleRadius(98000.0f)
+		)
 	{
 	}
 };
@@ -369,7 +403,7 @@ struct UranusRing : public Ring
 struct Neptune : public Sphere
 {
 	Neptune()
-		: Sphere(1.55f)
+		: Sphere(ScaleRadius(24622.0f))
 	{
 	}
 };
@@ -377,7 +411,7 @@ struct Neptune : public Sphere
 struct Pluto : public Sphere
 {
 	Pluto()
-		: Sphere(0.18f)
+		: Sphere(ScaleRadius(1188.3f))
 	{
 	}
 };
